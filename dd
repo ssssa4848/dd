@@ -1,0 +1,14 @@
+local plr = game:GetService("Players").LocalPlayer.Character
+local Player = game:GetService("Players").LocalPlayer
+local skill = nil
+plr.ChildAdded:Connect(function(child)
+    if child:IsA("Tool") and child:FindFirstChild("Skill") then
+        skill = child.Name
+        child.Activated:Connect(function()
+            wait(0.2)
+            plr[""..skill..""]:Destroy()
+            wait(0.2)
+            plr.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild(child.Name))
+        end)
+    end
+end)
